@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kart Bilgileri</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .odeme-formu {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 40%;
+            text-align: center;
+        }
+        .odeme-formu h2 {
+            color: #e60000;
+            margin-bottom: 30px;
+            font-size: 24px;
+        }
+        .form-grup {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        .form-grup label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+        .form-grup input {
+            width: 100%;
+            padding: 12px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .form-grup input[type="text"],
+        .form-grup input[type="month"] {
+            background-color: #f9f9f9;
+        }
+        .form-grup input[type="submit"] {
+            background-color: #35d14f;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 18px;
+            width: 100%;
+            padding: 15px;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+        .form-grup input[type="submit"]:hover {
+            background-color: #2cac42;
+            transition: all 0.3s ease;
+        }
+        .alert {
+            display: none; 
+        }
+    </style>
+</head>
+<body>
+    <div class="odeme-formu">
+        
+        <div id="successAlert" class="alert alert-success" role="alert">
+            Ödeme başarıyla tamamlandı! Siparişlerim kısmından takip edebilirsiniz.
+        </div>
+
+        <h2>MSI Ödeme Bilgileri</h2>
+        <form id="odemeFormu" action="/submit-payment" method="post">
+            <div class="form-grup">
+                <label for="kartIsmi">Kart İsmi</label>
+                <input type="text" id="kartIsmi" name="kartIsmi" class="form-control" required>
+            </div>
+            <div class="form-grup">
+                <label for="kartNumarasi">Kart Numarası</label>
+                <input type="text" id="kartNumarasi" name="kartNumarasi" class="form-control" required>
+            </div>
+            <div class="form-grup">
+                <label for="sonKullanmaTarihi">Son Kullanma Tarihi (AA/YY)</label>
+                <input type="month" id="sonKullanmaTarihi" name="sonKullanmaTarihi" class="form-control" required>
+            </div>
+            <div class="form-grup">
+                <label for="cvv">CVV</label>
+                <input type="text" id="cvv" name="cvv" class="form-control" required>
+            </div>
+            <div class="form-grup">
+                <input type="submit" value="Ödemeyi Tamamla" class="btn btn-success btn-block">
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('odemeFormu').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+            document.getElementById('successAlert').style.display = 'block';
+            setTimeout(function() {
+                document.getElementById('successAlert').style.display = 'none'; 
+            }, 5000); 
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+</body>
+</html>
